@@ -4,6 +4,7 @@ channels:
   - pytorch
   - defaults
 dependencies:
+  - pip
   - imageio=2.4.1
   - numpy=1.15.4
   - numpy-base=1.15.4

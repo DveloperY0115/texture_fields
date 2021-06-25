@@ -6,7 +6,6 @@ import trimesh
 import imageio
 from mesh2tex.data.core import Field
 
-
 # Make sure loading xlr works
 imageio.plugins.freeimage.download()
 
