@@ -4,6 +4,8 @@
 <img src="gfx/clips/blackroof.gif" width="40%" />
 </div>
 
+**This repository is forked from autonomousvision/texture_fields. Note that the original repository have some issues regarding project structure & project depdencies.**
+
 This repository contains code for the paper 'Texture Fields: Learning Texture Representations in Function Space'.
 
 You can find detailed usage instructions for training your own models and using pretrained models below.
