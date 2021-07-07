@@ -2,12 +2,16 @@
 Script for generating adversarial data for Texture Fields
 """
 
+import argparse
 import os
 import sys
 import shutil
 import random
 from tqdm import tqdm
 
+parser = argparse.ArgumentParser()
+parser.add_argument('--num_samples', type=int, default=100, help='Number of adversarial samples to be generated')
+args = parser.parse_args()
 
 def main():
 
@@ -20,7 +24,7 @@ def main():
         os.mkdir(path_to_adversarial_data)
 
         # number of samples to be copied
-        num_samples = 100
+        num_samples = args.num_samples
 
         samples = os.listdir(path_to_data)
         for sample in samples:
