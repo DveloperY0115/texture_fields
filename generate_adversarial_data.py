@@ -13,12 +13,24 @@ def main():
 
     path_to_data = "./data/shapenet/synthetic_cars_nospecular"
 
-    # copy the original dataset
+    # copy the subset of original dataset
     path_to_adversarial_data = "./data/shapenet_adversarial"
     if not os.path.exists(path_to_adversarial_data):
         print("[!] Start copying data...")
-        shutil.copytree(path_to_data, path_to_adversarial_data)
-        print("[!] Successfully copied data.")
+        os.mkdir(path_to_adversarial_data)
+
+        # number of samples to be copied
+        num_samples = 100
+
+        samples = os.listdir(path_to_data)
+        for sample in samples:
+            if num_samples == 0:
+                break
+            shutil.copytree(
+                os.path.join(path_to_data, sample), os.path.join(path_to_adversarial_data, sample)
+            )
+            num_samples -= 1
+        print("[!] Done.")
 
     # randomly shuffle data between samples
     samples = os.listdir(path_to_adversarial_data)
@@ -26,6 +38,9 @@ def main():
     for sample in tqdm(samples):
 
         another_sample = random.sample(samples, 1)[0]
+
+        while sample is another_sample:
+            another_sample = random.sample(samples, 1)[0]
 
         imgs_1 = os.path.join(path_to_adversarial_data, sample, "input_image")
         imgs_1_copy = os.path.join(path_to_adversarial_data, sample, "tmp")
