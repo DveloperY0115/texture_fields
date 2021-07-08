@@ -10,8 +10,11 @@ import random
 from tqdm import tqdm
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--num_samples', type=int, default=100, help='Number of adversarial samples to be generated')
+parser.add_argument(
+    "--num_samples", type=int, default=100, help="Number of adversarial samples to be generated"
+)
 args = parser.parse_args()
+
 
 def main():
 
@@ -27,18 +30,16 @@ def main():
         num_samples = args.num_samples
 
         samples = os.listdir(path_to_data)
-        for sample in samples:
-            if num_samples == 0:
-                break
+        for sample in tqdm(samples):
             shutil.copytree(
                 os.path.join(path_to_data, sample), os.path.join(path_to_adversarial_data, sample)
             )
-            num_samples -= 1
         print("[!] Done.")
 
     # randomly shuffle data between samples
     samples = os.listdir(path_to_adversarial_data)
 
+    .print('[!] Shuffling components of data...')
     for sample in tqdm(samples):
 
         another_sample = random.sample(samples, 1)[0]
@@ -56,7 +57,6 @@ def main():
         copy_directory_and_overwrite(imgs_1_copy, imgs_2)
         shutil.rmtree(imgs_1_copy)
 
-    # clean up
     print("[!] Finished generating adversarial dataset.")
 
     return
