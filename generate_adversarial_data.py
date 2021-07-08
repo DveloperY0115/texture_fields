@@ -9,12 +9,6 @@ import shutil
 import random
 from tqdm import tqdm
 
-parser = argparse.ArgumentParser()
-parser.add_argument(
-    "--num_samples", type=int, default=100, help="Number of adversarial samples to be generated"
-)
-args = parser.parse_args()
-
 
 def main():
 
@@ -26,9 +20,6 @@ def main():
         print("[!] Start copying data...")
         os.mkdir(path_to_adversarial_data)
 
-        # number of samples to be copied
-        num_samples = args.num_samples
-
         samples = os.listdir(path_to_data)
         for sample in tqdm(samples):
             shutil.copytree(
@@ -39,7 +30,7 @@ def main():
     # randomly shuffle data between samples
     samples = os.listdir(path_to_adversarial_data)
 
-    .print('[!] Shuffling components of data...')
+    print("[!] Shuffling components of data...")
     for sample in tqdm(samples):
 
         another_sample = random.sample(samples, 1)[0]
