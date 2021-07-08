@@ -1,5 +1,9 @@
+configs/
 data
 
 .vscode
 shapenet
 out
+out_adversarial
+picked_imgs
+galary
